@@ -259,6 +259,7 @@
       .top_p1 {display: none;}
       .top_p2 {display: block;}
     }
+
   </style>
 </head>
 
@@ -279,8 +280,7 @@
       <li class="top"><a href="index.html">ホーム</a></li>
       <li><a href="install.html">インストール</a></li>
       <li><a href="document.html">ドキュメント</a></li>
-      <li><a href="githab.html">githab</a></li>
-      <li><a href="contact.html">お問い合わせ</a></li>
+      <li><a href="https://github.com/ryota1207/toolbox.sh" target="_blank" rel="noopener noreferrer">githab</a></li>
     </ul>
   </header>
 
@@ -304,6 +304,15 @@
       </div>
     </div>
 
+
+<script>
+  window.addEventListener('beforeunload', function (e) {
+      const menuBtn = document.querySelector(".menu-btn");
+      if (menuBtn.checked) {
+          menuBtn.checked = false;
+      }
+  });
+</script>
 
 </body>
 

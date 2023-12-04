@@ -11,16 +11,16 @@
 
 
   <!-- ページ設定 -->
-  <title>ドキュメント</title>
+  <title>動作環境</title>
   <meta name="description" content="エンジニア向けのシェルツール" />
 
   <!-- ファビコン -->
-  <link rel="icon" href="./image/favicon/favicon.ico">
-  <link rel="icon" type="image/png" href="./image/favicon/favicon.png">
+  <link rel="icon" href="../image/favicon/favicon.ico">
+  <link rel="icon" type="image/png" href="../image/favicon/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 
 
   <style>
@@ -295,45 +295,24 @@
      padding-right: 20px;
     }
 
-    details {
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      overflow: hidden;
+
+    /* テーブル全体のスタイル */
+    .table1 {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Arial', sans-serif;
+        color: #333;
     }
 
-    summary {
-      padding: 10px;
-      background-color: #f5f5f5;
-      cursor: pointer;
-      list-style-type: none;
-      font-weight:600; 
+    .table1 th, .table1 td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+        height: 40px;
     }
 
-    summary::before {
-      content: '+';
-      float: right;
-      display: inline-block;
-      font-size: 20px;
-      margin-right: 5px;
-      transition: transform 0.3s ease-out;
-    }
-
-    details[open] summary {
-      background-color: var(--sab-color);
-      color: #FFFFFF;
-    }
-
-    details[open] summary::before {
-      transform: rotate(45deg);
-    }
-
-    summary:hover {
-      background-color: #e0e0e0;
-    }
-
-    details > div {
-      padding: 10px;
+    .table1 tr:nth-child(even) {
+        background-color: #f2f2f2;
     }
   </style>
 </head>
@@ -343,19 +322,19 @@
   <header class="header">
     <input type="checkbox" class="menu-btn" id="menu-btn">
     <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
-    <a href="index.html">
+    <a href="../index.html">
       
       <div class="navtext" style="user-select: none;">
-        <img src="./1.svg" width="26px" style="margin-right: 5px;">
+        <img src="../1.svg" width="26px" style="margin-right: 5px;">
   
         <span style="font-weight: bold;">toolbox.sh</span>
       </div>
     </a>
     <ul class="menu">
-      <li class="top"><a href="index.html">ホーム</a></li>
-      <li><a href="install.html">インストール</a></li>
-      <li><a href="document.html">ドキュメント</a></li>
-      <li><a href="license.html">ライセンス</a></li>
+      <li class="top"><a href="../index.html">ホーム</a></li>
+      <li><a href="../install.html">インストール</a></li>
+      <li><a href="../document.html">ドキュメント</a></li>
+      <li><a href="../license.html">ライセンス</a></li>
       <li><a href="https://github.com/ryota1207/toolbox.sh" target="_blank" rel="noopener noreferrer">githab</a></li>
     </ul>
   </header>
@@ -363,39 +342,88 @@
 
 
     <div style="width: 90%; margin: auto;max-width: 1200px;">
-      <p class="top_1">「toolbox.sh」ドキュメント</span></p>
+      <p class="top_1">- 動作環境 -</span></p>
 
-        <div style="width: 70%;margin: auto; margin-bottom: 50px;">
+        <div style="width: 70%;margin: auto;">
 
-          <p class="top_2">更新情報</p>
-          <p>更新情報は以下ページをご確認よろしくお願い致します。</p>
-          <a href="./document/001.html"><button class="top_button top_button1">更新情報▼</button></a>
-
-          <p class="top_2">動作環境</p>
-          <p>コードの動作環境は以下ページをご確認よろしくお願い致します。</p>
-          <a href="./document/002.html"><button class="top_button top_button2">バージョン一覧▼</button></a>
-
-          <p class="top_2">開発スケジュール</p>
-          <p>開発スケジュールは以下ページをご確認よろしくお願い致します。</p>
-          <a href="./document/003.html"><button class="top_button top_button1">スケジュール▼</button></a>
-
-          <p class="top_2">コマンド仕様</p>
-          <details>
-            <summary>準備中1</summary>
-            <div>
-              <p>ここにコマンド1の詳細な説明が入ります。</p>
-              <p>例: このコマンドは何々を行います。</p>
-            </div>
-          </details>
-        
-          <details>
-            <summary>準備中2</summary>
-            <div>
-              <p>ここにコマンド2の詳細な説明が入ります。</p>
-              <p>例: このコマンドは何々を行います。</p>
-            </div>
-          </details>
-
+          <p class="top_2">バージョン1.0</p>
+          <div style="overflow-x: auto;">
+            <table class="table1">
+                <thead style="background-color: var(--sab-color);color: #FFFFFF;">
+                    <tr>
+                        <th>RHL系</th>
+                        <th>RHL7</th>
+                        <th>RHL8</th>
+                        <th>RHL9</th>
+                        <th>RHL8</th>
+                        <th>RHT10</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>コマンド1</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>コマンド2</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>コマンド3</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                </tbody>
+                <thead  style="background-color: var(--sab-color);color: #FFFFFF;">
+                  <tr>
+                      <th>Ubuntu系</th>
+                      <th>RHL7</th>
+                      <th>RHL8</th>
+                      <th>RHL9</th>
+                      <th>RHL8</th>
+                      <th>RHT10</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td>コマンド1</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                </tr>
+                <tr>
+                    <td>コマンド2</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                </tr>
+                <tr>
+                    <td>コマンド3</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+          <a href="../document.html" style="display: block; text-align: center; margin-top: 30px; margin-bottom: 30px;"><button class="top_button top_button2">戻る</button></a>
         </div>
     </div>
 

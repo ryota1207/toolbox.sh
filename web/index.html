@@ -221,23 +221,23 @@
       margin: 5px;
     }
 
-    #top_button1{
+    .top_button1{
       background-color: var(--sab-color);
       border: solid 2px var(--sab-color);
       color: #FFFFFF;
     }
-    #top_button1:hover {
+    .top_button1:hover {
       background-color: #FFFFFF;
       border: solid 2px var(--sab-color);
       color: var(--sab-color);
     }
 
-    #top_button2{
+    .top_button2{
       background-color:#FFFFFF;
       border: solid 2px var(--sab-color);
       color: var(--sab-color);
     }
-    #top_button2:hover {
+    .top_button2:hover {
       background-color: var(--sab-color);
       color: #FFFFFF;
     }
@@ -258,6 +258,69 @@
       .top_h1{font-size: 2rem;}
       .top_p1 {display: none;}
       .top_p2 {display: block;}
+    }
+
+    .top_2{
+      margin-top:52px; 
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      padding-left: 15px;
+      max-width: 900px;
+      font-weight:600;
+    }
+
+
+    .container {
+      width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      flex: 1 1 300px;
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background-color: var(--sab-color);
+      color: #FFFFFF;
+    }
+    .card h2 {
+      color: var(--sab-color);
+    }
+
+    .card:hover h2 {
+  color: #FFFFFF; }
+
+    .card  p {
+      font-size: 16px;
+    }
+
+    pre {
+      font-family: 'Courier New', monospace;
+      background-color: #333;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+      overflow: auto;
+    }
+
+    code {
+      color: #FFFFFF;
+      display: block;
+      white-space:nowrap;
+     padding-left: 20px;
+     padding-right: 20px;
     }
 
   </style>
@@ -300,9 +363,43 @@
       <p class="top_p2" style="width: 90%; max-width: 800px; margin: 20px auto;font-size: 1.3rem;color:#333;">Linuxコマンドでの作業を効率化させるエンジニア向けツールボックスです。</p>
     
       <div style="max-width: 500px; margin: auto;text-align: center;">
-        <a href="install.html"><button class="top_button" id="top_button1">インストール ▼</button></a>
-        <a href="document.html"><button class="top_button" id="top_button2">ドキュメント ▼</button></a>
+        <a href="install.html"><button class="top_button top_button1">インストール ▼</button></a>
+        <a href="document.html"><button class="top_button top_button2">ドキュメント ▼</button></a>
       </div>
+    </div>
+
+    <div style="max-width: 800px; margin: auto; margin-top: 35px; margin-bottom: 50px;">
+      <p class="top_2" style="border-bottom: 2px solid var(--sab-color);text-align: center;">「toolbox.sh」の特徴</p>
+      <div class="container">
+        <div class="card">
+          <h2>簡単インストール</h2>
+          <p>「toolbox.sh」はコマンド1つでインストールを行う事が出来ます。詳細な手順はインストール方法をご参照ください。</p>
+        </div>
+    
+        <div class="card">
+          <h2>スマート拡張設計</h2>
+          <p>「toolbox.sh」は既存コマンドでの作業をスマートに効率よく実行できるよう思考し設計しております。</p>
+        </div>
+    
+        <div class="card">
+          <h2>日本語ドキュメント</h2>
+          <p>「toolbox.sh」は日本語ドキュメントをご用意しております。詳細につきましては公式ドキュメントページをご参照ください。</p>
+        </div>
+      </div>
+
+      <p class="top_2" style="border-bottom: 2px solid var(--sab-color);text-align: center;">搭載コマンド</p>
+
+      <p class="top_2" style="border-left: 7px solid var(--sab-color);">DNSレコード一括検索</p>
+      <p>「digs」は「toolbox.sh」に搭載されたDNSレコード一括検索コマンドです。</p>
+      <p>ドメインリストのテキストファイルを引数にDNSレコードの一括検索を行う事ができます。</p>
+      <p>従来のdigコマンドと同様「a」「mx」「ns」「-x」等のオプションを指定し実行する事ができます。</p>
+      <pre>
+        <code style="height: 15px; line-height: 2.5;">$ digs list.txt option</code>
+      </pre>
+
+      <a href="document.html" style="display: block; text-align: center; margin-top: 30px; margin-bottom: 30px;"><button class="top_button top_button2">コマンド一覧</button></a>
+
+
     </div>
 
 

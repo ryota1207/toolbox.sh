@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <!-- メタ -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+
+  <!-- ページ設定 -->
+  <title>動作環境</title>
+  <meta name="description" content="エンジニア向けのシェルツール" />
+
+  <!-- ファビコン -->
+  <link rel="icon" href="../image/favicon/favicon.ico">
+  <link rel="icon" type="image/png" href="../image/favicon/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Outfit","Futura", Helvetica, sans-serif;
+    }
+
+    ::selection {
+      background: #f1e3ff;
+    }
+
+
+    :root {
+      --sab-color:#2dcbeb; ;
+    }
+
+
+    /* ナビゲーション */
+    .header {
+      position: fixed;
+      width: 100%;
+      height: 52px;
+      padding: 0;
+      margin: 0;
+      background-color: #FFFFFF;
+    }
+
+    .menu {
+      list-style: none;
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      top: 0;
+      margin-top: 52px;
+      padding: 0 0 10px 0;
+      clear: both;
+      transition: 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+      transform: scale(1, 0);
+      transform-origin: top;
+      background-color: #FFFFFF;
+      user-select: none;
+      text-align: center;
+    }
+
+    .menu-btn:checked~.menu {
+      transform: scale(1, 1);
+      transform-origin: top;
+      transition: 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+    }
+
+    .menu a {
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 2px;
+      font-size: 16px;
+      text-transform: capitalize;
+      color: #333;
+      opacity: 0;
+      transition: 0.5s;
+    }
+
+    .menu li {
+      padding: 15px 0;
+      margin: 0 54px;
+      opacity: 0;
+      transition: 0.5s;
+    }
+
+    .menu li :hover {
+      color:var(--sab-color);
+      font-weight: bold;
+      border-bottom: solid 2px var(--sab-color);
+    }
+
+
+
+    .menu-btn:checked~.menu a,
+    .menu-btn:checked~.menu li {
+      opacity: 1;
+      transition: 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.2s;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    .menu-icon {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      padding: 24px 14px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      float: right;
+    }
+
+    .navicon {
+      background: #333;
+      display: block;
+      height: 3px;
+      width: 26px;
+      position: relative;
+      transition: 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+    }
+
+    .navicon:before,
+    .navicon:after {
+      content: "";
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background: #333;
+      transition: 0.3192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+    }
+
+    .navicon:before {
+      top: 9px;
+    }
+
+    .navicon:after {
+      bottom: 9px;
+    }
+
+    .menu-btn:checked~.menu-icon .navicon:before {
+      transform: rotate(-45deg);
+    }
+
+    .menu-btn:checked~.menu-icon .navicon:after {
+      transform: rotate(45deg);
+    }
+
+    .menu-btn:checked~.menu-icon:not(.steps) .navicon:before {
+      top: 0;
+    }
+
+    .menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+      bottom: 0;
+    }
+
+    .menu-btn:checked~.menu-icon .navicon {
+      background: rgba(0, 0, 0, 0);
+      transition: 0.2192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
+    }
+
+    .navtext-container {
+      width: 100%;
+      height: 52px;
+      position: absolute;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .navtext {
+      position: absolute;
+      color: #333;
+      letter-spacing: 4px;
+      font-size: 20px;
+      padding: 15px 14px;
+      color: #333;
+      text-decoration: none;
+      display: flex;
+    }
+
+    /* アイコン */
+    .icon {
+      opacity: 0;
+      position: fixed;
+      transition: 0.2192s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.2008s;
+    }
+
+    .menu-btn:checked~.icon {
+      opacity: 1;
+    }
+
+
+    /* 画像制限 */
+    img {
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      pointer-events: none;
+    }
+
+    .top_button {
+      width: 50%;
+      max-width: 200px;
+      min-width: 150px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 25px;
+      margin: 5px;
+    }
+
+    .top_button1{
+      background-color: var(--sab-color);
+      border: solid 2px var(--sab-color);
+      color: #FFFFFF;
+    }
+    .top_button1:hover {
+      background-color: #FFFFFF;
+      border: solid 2px var(--sab-color);
+      color: var(--sab-color);
+    }
+
+    .top_button2{
+      background-color:#FFFFFF;
+      border: solid 2px var(--sab-color);
+      color: var(--sab-color);
+    }
+    .top_button2:hover {
+      background-color: var(--sab-color);
+      color: #FFFFFF;
+    }
+
+    .top_1{
+      padding-top:82px; 
+      font-size: 1.5rem;
+      padding-bottom: 22px;
+      width: 80%;
+      max-width: 900px;
+      text-align: center;
+      margin: auto;
+    }
+
+
+    .top_2{
+      margin-top:52px; 
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      padding-left: 15px;
+      max-width: 900px;
+      border-left: 7px solid var(--sab-color);
+      font-weight:600;
+    }
+
+    .top_3{
+      margin-top:52px; 
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      padding-left: 15px;
+      max-width: 900px;
+      border-left: 7px solid #333;
+      font-weight:600;
+    }
+
+    @media screen and (max-width: 700px) {
+      .top_h3{font-size: 2rem;}
+    }
+
+    pre {
+      font-family: 'Courier New', monospace;
+      background-color: #333;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+      overflow: auto;
+    }
+
+    code {
+      color: #FFFFFF;
+      display: block;
+      white-space:nowrap;
+     padding-left: 20px;
+     padding-right: 20px;
+    }
+
+
+    /* テーブル全体のスタイル */
+    .table1 {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+
+    .table1 th, .table1 td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+        height: 40px;
+    }
+
+    .table1 tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+
+<body>
+  <header class="header">
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+    <a href="../index.html">
+      
+      <div class="navtext" style="user-select: none;">
+        <img src="../1.svg" width="26px" style="margin-right: 5px;">
+  
+        <span style="font-weight: bold;">toolbox.sh</span>
+      </div>
+    </a>
+    <ul class="menu">
+      <li class="top"><a href="../index.html">ホーム</a></li>
+      <li><a href="../install.html">インストール</a></li>
+      <li><a href="../document.html">ドキュメント</a></li>
+      <li><a href="../license.html">ライセンス</a></li>
+      <li><a href="https://github.com/ryota1207/toolbox.sh" target="_blank" rel="noopener noreferrer">githab</a></li>
+    </ul>
+  </header>
+
+
+
+    <div style="width: 90%; margin: auto;max-width: 1200px;">
+      <p class="top_1">- 動作環境 -</span></p>
+
+        <div style="width: 70%;margin: auto;">
+
+          <p class="top_2">バージョン1.0</p>
+          <div style="overflow-x: auto;">
+            <table class="table1">
+                <thead style="background-color: var(--sab-color);color: #FFFFFF;">
+                    <tr>
+                        <th>RHL系</th>
+                        <th>RHL7</th>
+                        <th>RHL8</th>
+                        <th>RHL9</th>
+                        <th>RHL8</th>
+                        <th>RHT10</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>コマンド1</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>コマンド2</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>コマンド3</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                </tbody>
+                <thead  style="background-color: var(--sab-color);color: #FFFFFF;">
+                  <tr>
+                      <th>Ubuntu系</th>
+                      <th>RHL7</th>
+                      <th>RHL8</th>
+                      <th>RHL9</th>
+                      <th>RHL8</th>
+                      <th>RHT10</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td>コマンド1</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                </tr>
+                <tr>
+                    <td>コマンド2</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                </tr>
+                <tr>
+                    <td>コマンド3</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+          <a href="../document.html" style="display: block; text-align: center; margin-top: 30px; margin-bottom: 30px;"><button class="top_button top_button2">戻る</button></a>
+        </div>
+    </div>
+
+
+<script>
+  window.addEventListener('beforeunload', function (e) {
+      const menuBtn = document.querySelector(".menu-btn");
+      if (menuBtn.checked) {
+          menuBtn.checked = false;
+      }
+  });
+</script>
+
+</body>
+
+</html>

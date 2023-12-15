@@ -1,5 +1,6 @@
 #!/bin/bash
 
+####関数
 #レスポンスエラー判定関数
 check_response_status() {
 
@@ -13,6 +14,17 @@ check_response_status() {
     fi
 }
 
+#bin処理用の変数
+bin=$(true)
+
+#binのパス設定関数
+setting_bin_path() {
+    bin="$1"
+    # ~/binの確認
+    if [ "$bin" == "false" ]; then
+        echo "export PATH=\$PATH:~/bin" >> ~/.bashrc
+    fi
+}
 
 RED='\033[0;31m'
 Yellow='\033[0;33m'
@@ -87,11 +99,9 @@ if [[ ! $response =~ ^[Yy]$ ]]; then
 fi
 
 
-#実行ユーザーの確認
+#実行ユーザー格納変数
 current_user=$(whoami)
 
-#bin処理用の変数
-bin=$(true)
 
 #~/binの確認
 if [ ! -d ~/bin ]; then
@@ -99,27 +109,47 @@ if [ ! -d ~/bin ]; then
     mkdir ~/bin
     chmod 700 ~/bin
     chown $current_user:$current_user ~/bin
-    export PATH=$PATH:~/bin
-    bin=$(false)
+fi
+
+#~/binのパス確認
+if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
+  export PATH=$PATH:~/bin
+  bin=false
 fi
 
 
-curl -s URL https://raw.githubusercontent.com/ryota1207/toolbox.sh/main/src/commands/digs > ~/bin/digs
-chmod 700 ~/bin/digs
-chown $current_user:$current_user ~/bin/digs
-export PATH=$PATH:~/bin/digs
+#/bin/toolboxの作成
+printf "\n■■${Yellow}[システム]${NC}\n■■~/binファイル配下にtoolboxディレクトリを作成します。\n\n"
+
+mkdir ~/bin/toolbox
+export PATH=$PATH:~/bin/toolbox
+
+
+#コマンドの設置
+curl -s URL https://raw.githubusercontent.com/ryota1207/toolbox.sh/main/src/commands/digs > ~/bin/toolbox/digs
+export PATH=$PATH:~/bin/toolbox/digs
+
+#所有者、権限の変更
+chmod -R 700 ~/bin/toolbox
+chown $current_user:$current_user ~/bin/toolbox
+
 
 #.bashrcの確認
 if [ -f ~/.bashrc ]; then
     echo ".bashrcが存在します"
-    echo "export PATH=$PATH:~/bin/digs" >> ~/.bashrc
+
+    # binのパスチェック
+    setting_bin_path "$bin"
+
+    echo "export PATH=\$PATH:~/bin/toolbox/digs" >> ~/.bashrc
+
 else
     printf "\n■■${Yellow}[システム]${NC}\n■■~/.bashrcファイルが存在しない為、システムにて作成を行います。\n\n"
     echo "" > ~/.bashrc
-    #~/binの確認
-    if [ "$bin" == false ]; then
-        echo "export PATH=$PATH:~/bin" >> ~/.bashrc
-    fi
-    echo "export PATH=$PATH:~/bin/digs" >> ~/.bashrc
+
+    # binのパスチェック
+    setting_bin_path "$bin"
+
+    echo "export PATH=\$PATH:~/bin/toolbox/digs" >> ~/.bashrc
     
 fi

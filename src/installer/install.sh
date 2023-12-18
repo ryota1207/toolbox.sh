@@ -138,18 +138,22 @@ chown $current_user:$current_user ~/bin/toolbox
 if [ -f ~/.bashrc ]; then
     echo ".bashrcが存在します"
 
-    # binのパスチェック
+    #binのパスチェック
     setting_bin_path "$bin"
 
+    #コマンドパスの追加
+    echo "export PATH=\$PATH:~/bin/toolbox" >> ~/.bashrc
     echo "export PATH=\$PATH:~/bin/toolbox/digs" >> ~/.bashrc
 
 else
     printf "\n■■${Yellow}[システム]${NC}\n■■~/.bashrcファイルが存在しない為、システムにて作成を行います。\n\n"
     echo "" > ~/.bashrc
 
-    # binのパスチェック
+    #binのパスチェック
     setting_bin_path "$bin"
 
+    #コマンドパスの追加
+    echo "export PATH=\$PATH:~/bin/toolbox" >> ~/.bashrc
     echo "export PATH=\$PATH:~/bin/toolbox/digs" >> ~/.bashrc
     
 fi
